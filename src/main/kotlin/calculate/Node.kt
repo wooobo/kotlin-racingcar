@@ -2,14 +2,14 @@ package calculate
 
 data class Node(val value: String) {
     fun calculate(
-        first: Node,
-        second: Node,
+        operation: Operation,
+        operand: Node,
     ): Node {
-        val result = findOperation().apply(first.toInt(), second.toInt())
+        val result = operation.apply(toInt(), operand.toInt())
         return Node(result.toString())
     }
 
-    private fun findOperation(): Operation {
+    fun findOperation(): Operation {
         return Operation.ofSymbol(value)
     }
 

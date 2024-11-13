@@ -22,8 +22,8 @@ class Nodes(values: List<String>) {
         nodes.drop(1)
             .chunked(CHUNK_SIZE)
             .forEach { chunk ->
-                val (operation, rightValue) = chunk
-                result = operation.calculate(result, rightValue)
+                val (operationNode, rightNode) = chunk
+                result = result.calculate(operationNode.findOperation(), rightNode)
             }
 
         return result
