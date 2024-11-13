@@ -44,4 +44,13 @@ enum class Operation(val symbol: String) {
         first: Int,
         second: Int,
     ): Int
+
+    companion object {
+        fun ofSymbol(symbol: String): Operation {
+            return entries.find {
+                it.symbol == symbol
+            }
+                ?: NONE
+        }
+    }
 }
