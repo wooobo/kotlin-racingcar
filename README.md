@@ -37,9 +37,10 @@ mkdir .git/hooks
 - 공백 문자열을 빈 공백 문자로 분리하려면 String 클래스의 split(" ") 메소드를 활용
 
 ### 작업목록
-- [ ] 입력값이 null이거나 빈 공백 문자일 경우 IllegalArgumentException throw
-- [ ] 사칙연산 기호가 아닌 경우 IllegalArgumentException throw
+- [X] 입력값이 null이거나 빈 공백 문자일 경우 IllegalArgumentException throw
+- [X] 사칙연산 기호가 아닌 경우 IllegalArgumentException throw
 - [ ] 덧셈
 - [ ] 뺄셈
 - [ ] 곱셈
 - [ ] 나눗셈
+- [ ] 객체 분리 리팩토링
