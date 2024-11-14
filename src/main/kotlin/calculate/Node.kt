@@ -1,19 +1,15 @@
 package calculate
 
-data class Node(val value: String) {
-    fun calculate(
-        operation: Operation,
-        operand: Node,
-    ): Node {
-        val result = operation.apply(toInt(), operand.toInt())
-        return Node(result.toString())
-    }
+sealed interface Node {
+    data class OperandNode(val value: Int) : Node
 
-    fun findOperation(): Operation {
-        return Operation.ofSymbol(value)
-    }
-
-    private fun toInt(): Int {
-        return value.toInt()
+    data class OperatorNode(val operation: Operation) : Node {
+        fun calculate(
+            left: OperandNode,
+            right: OperandNode,
+        ): OperandNode {
+            val result = operation.apply(left.value, right.value)
+            return OperandNode(result)
+        }
     }
 }
