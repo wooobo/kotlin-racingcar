@@ -44,3 +44,11 @@ mkdir .git/hooks
 - [X] 곱셈
 - [X] 나눗셈
 - [X] 객체 분리 리팩토링
+
+### 2단계 피드백
+- [ ] sealed interface 사용하여 책임 분리
+- [ ] .fold() 를 활용
+- [ ] enum abstract 함수 -> override로 전환해보기
+- [ ] NodeTest ParameterizedTest 사용해보기
+- [ ] assertEquals -> assertThat
+- [ ] @EmptySource
