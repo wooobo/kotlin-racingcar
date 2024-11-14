@@ -46,9 +46,9 @@ mkdir .git/hooks
 - [X] 객체 분리 리팩토링
 
 ### 2단계 피드백
-- [ ] sealed interface 사용하여 책임 분리
-- [ ] .fold() 를 활용
-- [ ] enum abstract 함수 -> override로 전환해보기
-- [ ] NodeTest ParameterizedTest 사용해보기
-- [ ] assertEquals -> assertThat
-- [ ] @EmptySource
+- [X] sealed interface 사용하여 책임 분리
+- [X] .fold() 를 활용
+- [X] enum abstract 함수 -> override로 전환해보기
+- [X] NodeTest ParameterizedTest 사용해보기
+- [X] assertEquals -> assertThat
+- [X] @EmptySource
