@@ -5,47 +5,51 @@ import org.junit.jupiter.api.Test
 
 class NodeTest {
     @Test
-    fun `연산자를 찾는다`() {
-        val node = Node("+")
-
-        val actual = node.findOperation()
-
-        assertThat(actual).isEqualTo(Operation.PLUS)
-    }
-
-    @Test
     fun `덧셈을 한다`() {
-        val node = Node("2")
+        val node = Node.OperandNode(2)
+        val operator = Node.OperatorNode(Operation.PLUS)
 
-        val actual = node.calculate(Operation.PLUS, Node("3"))
+        val actual = operator.calculate(node, Node.OperandNode(3))
 
-        assertThat(actual).isEqualTo(Node("5"))
+        assertThat(actual).isEqualTo(Node.OperandNode(5))
     }
 
     @Test
     fun `뺄셈을 한다`() {
-        val node = Node("5")
+        val node = Node.OperandNode(5)
+        val operator = Node.OperatorNode(Operation.MINUS)
 
-        val actual = node.calculate(Operation.MINUS, Node("3"))
+        val actual = operator.calculate(node, Node.OperandNode(3))
 
-        assertThat(actual).isEqualTo(Node("2"))
+        assertThat(actual).isEqualTo(Node.OperandNode(2))
     }
 
     @Test
     fun `곱셈을 한다`() {
-        val node = Node("2")
+        val node = Node.OperandNode(2)
+        val operator = Node.OperatorNode(Operation.MULTIPLY)
 
-        val actual = node.calculate(Operation.MULTIPLY, Node("3"))
+        val actual = operator.calculate(node, Node.OperandNode(3))
 
-        assertThat(actual).isEqualTo(Node("6"))
+        assertThat(actual).isEqualTo(Node.OperandNode(6))
     }
 
     @Test
     fun `나눗셈을 한다`() {
-        val node = Node("6")
+        val node = Node.OperandNode(6)
+        val operator = Node.OperatorNode(Operation.DIVIDE)
 
-        val actual = node.calculate(Operation.DIVIDE, Node("3"))
+        val actual = operator.calculate(node, Node.OperandNode(3))
 
-        assertThat(actual).isEqualTo(Node("2"))
+        assertThat(actual).isEqualTo(Node.OperandNode(2))
+    }
+
+    @Test
+    fun `OperatorNode 계산 가능하다`() {
+        val operator = Node.OperatorNode(Operation.PLUS)
+
+        val actual = operator.calculate(Node.OperandNode(1), Node.OperandNode(2))
+
+        assertThat(actual).isEqualTo(Node.OperandNode(3))
     }
 }
