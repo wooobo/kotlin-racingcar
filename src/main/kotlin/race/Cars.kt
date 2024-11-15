@@ -13,18 +13,18 @@ class Cars(private val cars: List<Car>) : List<Car> by cars {
         }
     }
 
-    fun move(
+    fun moveAll(moveConditions: List<PositiveNumber>) {
+        cars.forEachIndexed { index, car ->
+            move(car, moveConditions[index])
+        }
+    }
+
+    private fun move(
         moveCar: Car,
         moveCondition: PositiveNumber,
     ) {
         if (moveCondition.isGreaterThanOrEqual(MOVE_CONDITION)) {
             moveCar.move()
-        }
-    }
-
-    fun moveAll(moveConditions: List<PositiveNumber>) {
-        cars.forEachIndexed { index, car ->
-            move(car, moveConditions[index])
         }
     }
 }
