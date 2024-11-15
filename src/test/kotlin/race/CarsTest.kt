@@ -41,31 +41,6 @@ class CarsTest {
     }
 
     @Test
-    fun `유저에게 자동차 갯수와 시도횟수를 받는다`() {
-        val carCount =
-            InputView(
-                "",
-                readInput = { "4" },
-            ).processInputToInto()
-        val tryCount =
-            InputView(
-                "",
-                readInput = { "1" },
-            ).processInputToInto()
-
-        val cars = Cars.from(PositiveNumber(carCount))
-
-        val randomConditions: List<PositiveNumber> =
-            List(carCount) {
-                RandomGenerate(1, 10).generate()
-            }
-
-        repeat(tryCount) {
-            cars.moveAll(randomConditions)
-        }
-    }
-
-    @Test
     fun `Cars는 최소 1대 이상 입력해야 한다`() {
         assertThatIllegalArgumentException().isThrownBy {
             Cars.from(PositiveNumber(0))

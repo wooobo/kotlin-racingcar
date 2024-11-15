@@ -1,14 +1,11 @@
 package race
 
-typealias InputReader = () -> String
-
 class InputView(
     private val message: String,
-    private val readInput: InputReader = ::readln,
 ) {
-    fun processInput(): String {
+    private fun processInput(): String {
         println(message)
-        return readInput()
+        return readlnOrNull() ?: throw IllegalArgumentException("입력이 없습니다.")
     }
 
     fun processInputToInto(): Int {
