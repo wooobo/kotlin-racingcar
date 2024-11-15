@@ -52,3 +52,28 @@ mkdir .git/hooks
 - [X] NodeTest ParameterizedTest 사용해보기
 - [X] assertEquals -> assertThat
 - [X] @EmptySource
+
+
+## 3단계 - 자동차 경주 요구사항
+
+### 프로그래밍 요구 사항
+모든 로직에 단위 테스트를 구현한다. 단, UI(System.out, System.in) 로직은 제외
+핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 구분한다.
+UI 로직을 InputView, ResultView와 같은 클래스를 추가해 분리한다.
+
+### 도메인
+- 자동차
+  - 전진 가능
+    - 4 이상일 경우 전진
+- 무작위 숫자 검출기
+  - 0 ~ 9 사이의 무작위 숫자를 반환
+- 경주
+  - n대의 자동차, m번의 이동
+  - n, m은 유저에게 입력을 받는다.
+
+### 작업목록
+- [ ] 자동차 전진
+- [ ] 이동 객체 생성
+- [ ] 랜덤 추출기 생성
+- [ ] n대의 자동차 생성
+
