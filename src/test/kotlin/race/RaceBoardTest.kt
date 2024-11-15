@@ -1,5 +1,6 @@
 package race
 
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 
@@ -11,12 +12,14 @@ class RaceBoardTest {
         "1, 2",
         delimiter = ',',
     )
-    fun `start 실행시 문제없이 작동하여야 한다`(
+    fun `start 시도횟수 만큼 라운드를 반환한다`(
         carCount: Int,
         retryCount: Int,
     ) {
-        val raceBoard = RaceBoard(carCount, retryCount)
+        val raceBoard = RaceBoard.create(carCount, retryCount)
 
-        raceBoard.start()
+        val actual = raceBoard.start()
+
+        assertThat(actual.rounds).hasSize(retryCount)
     }
 }
