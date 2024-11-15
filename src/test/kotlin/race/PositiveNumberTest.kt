@@ -22,4 +22,13 @@ class PositiveNumberTest {
 
         assertThat(actual).isFalse()
     }
+
+    @Test
+    fun `숫자만 입력 가능`() {
+        val notNumber = "문자임"
+
+        assertThatIllegalArgumentException().isThrownBy {
+            PositiveNumber(notNumber)
+        }
+    }
 }
