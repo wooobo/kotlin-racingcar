@@ -13,15 +13,12 @@ class RaceBoard(
         val randomGenerate = RandomGenerate(RANDOM_START, RANDOM_END)
         val cars = Cars.from(PositiveNumber(carCount))
 
-        val rounds = mutableListOf<RaceRound>()
-
-        repeat(retryCount) {
-            val moveConditions: List<PositiveNumber> = List(carCount) { randomGenerate.generate() }
-            cars.moveAll(moveConditions)
-
-            rounds.add(RaceRound(cars.map { it.movedPosition }))
-        }
-
-        return RaceResult(rounds)
+        return RaceResult(
+            (1..retryCount).map {
+                val moveConditions: List<PositiveNumber> = List(carCount) { randomGenerate.generate() }
+                cars.moveAll(moveConditions)
+                RaceRound(cars.map { it.movedPosition })
+            },
+        )
     }
 }
