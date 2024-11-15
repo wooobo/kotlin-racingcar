@@ -5,20 +5,8 @@ import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.api.Assertions.assertAll
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.ValueSource
 
-class NumberGeneratorTest {
-    @ParameterizedTest
-    @ValueSource(ints = [0, 1, 2, 3, 4, 5])
-    fun `람다식 고정된 값 반환 확인`(value: Int) {
-        val testGenerator: NumberGenerate = {
-            PositiveNumber(value)
-        }
-
-        assertThat(testGenerator()).isEqualTo(PositiveNumber(value))
-    }
-
+class RandomGenerateTest {
     @Test
     fun `랜덤한 값 반환 확인`() {
         val randomGenerate = RandomGenerate(0, 5)
