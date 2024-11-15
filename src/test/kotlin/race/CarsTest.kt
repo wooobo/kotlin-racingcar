@@ -7,27 +7,46 @@ import org.junit.jupiter.api.Test
 class CarsTest {
     @Test
     fun `moveAll은 주어진 이동 조건에 따라 움직인다`() {
-        val cars = Cars.from(PositiveNumber(4))
+        val cars = Cars(PositiveNumber(4))
         val moveConditions =
-            listOf(
-                PositiveNumber(4),
-                PositiveNumber(3),
-                PositiveNumber(5),
-                PositiveNumber(2),
+            MoveConditions(
+                listOf(
+                    MoveCondition(PositiveNumber(4)),
+                    MoveCondition(PositiveNumber(3)),
+                    MoveCondition(PositiveNumber(5)),
+                    MoveCondition(PositiveNumber(2)),
+                ),
             )
 
         cars.moveAll(moveConditions)
 
-        val expectedPositions = listOf(2, 1, 2, 1)
+        val expected = listOf(Car(2), Car(1), Car(2), Car(1))
         cars.forEachIndexed { index, car ->
-            assertThat(car).isEqualTo(Car(PositiveNumber(expectedPositions[index])))
+            assertThat(car).isEqualTo(expected[index])
+        }
+    }
+
+    @Test
+    fun `moveCondition 갯수가 다르면 IllegalArgumentException을 던진다`() {
+        val cars = Cars(PositiveNumber(4))
+        val moveConditions =
+            MoveConditions(
+                listOf(
+                    MoveCondition(PositiveNumber(1)),
+                    MoveCondition(PositiveNumber(1)),
+                    MoveCondition(PositiveNumber(1)),
+                ),
+            )
+
+        assertThatIllegalArgumentException().isThrownBy {
+            cars.moveAll(moveConditions)
         }
     }
 
     @Test
     fun `Cars는 최소 1대 이상 입력해야 한다`() {
         assertThatIllegalArgumentException().isThrownBy {
-            Cars.from(PositiveNumber(0))
+            Cars(PositiveNumber(0))
         }
     }
 }

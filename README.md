@@ -79,13 +79,19 @@ UI 로직을 InputView, ResultView와 같은 클래스를 추가해 분리한다
 - [X] ui 
 
 ## 3단계 피드백
-- [ ]  setter는 감추고, getter만 공개
+- [X] setter는 감추고, getter만 공개
   - `private settter` 를 알아보자
-- [ ] error() 함수 활용 (Nodes.kt)
-- [ ] data class와 class의 차이점을 비교 (Car.kt)
-- [ ] Cars 정적 팩토리 메소드 => 부생성자
-- [ ] Alist.zip(Blist) 알아보기 (Cars.kt)
-- [ ] RandomGenerate 인터페이스화
-- [ ] 변수 타입이 명확하지 않은 경우 확실하게 지정하라 (RaceBoard.kt)
-- [ ] CsvSource enum 적용 (NodeTest.kt)
-- [ ] List와 List를 직접 비교 (CarsTest.kt)
+- [X] error() 함수 활용 (Nodes.kt)
+- [X] data class와 class의 차이점을 비교 (Car.kt)
+  - data class의 equals, hashCode는 주 생성자에 선언된 프로퍼티를 모두 활용해서 수행
+- [X] Cars 정적 팩토리 메소드 => 부생성자
+  - 코틀린에서는 new 연산자를 사용안하니, 정적 팩토리 메소드 활용범위가 다르다.
+- [X] Alist.zip(Blist) 알아보기 (Cars.kt)
+- [X] RandomGenerate 인터페이스화
+  - typealias로 대체
+  - 인터페이스를 통해 객체까지 가야하는 이유를 찾지못함
+- [X] 변수 타입이 명확하지 않은 경우 확실하게 지정하라 (RaceBoard.kt)
+  - 생성자가 사라짐
+  - 변수 타입을 지정하는것은 좋은 습관
+- [X] CsvSource enum 적용 (NodeTest.kt)
+- [X] List와 List를 직접 비교 (CarsTest.kt)

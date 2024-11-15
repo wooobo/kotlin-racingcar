@@ -5,77 +5,21 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 
 class NodeTest {
+    /**
+     * @see Operation 요소가 추가 되었을 때, 테스트 코드를 추가 해야 한다.
+     */
     @ParameterizedTest
-    @CsvSource("1,1,2", "2,3,5", "3,4,7")
-    fun `덧셈을 한다`(
+    @CsvSource("1,PLUS,1,2", "2, MINUS, 1, 1", "3, MULTIPLY, 2, 6", "4, DIVIDE, 2, 2")
+    fun `사칙연산 가능하다`(
         a: Int,
+        operator: Operation,
         b: Int,
         expected: Int,
     ) {
         val node = Node.OperandNode(a)
-        val operator = Node.OperatorNode(Operation.PLUS)
+        val operatorNode = Node.OperatorNode(operator)
 
-        val actual = operator.calculate(node, Node.OperandNode(b))
-
-        assertThat(actual).isEqualTo(Node.OperandNode(expected))
-    }
-
-    @ParameterizedTest
-    @CsvSource("1,1,0", "2,3,-1", "3,4,-1")
-    fun `뺄셈을 한다`(
-        a: Int,
-        b: Int,
-        expected: Int,
-    ) {
-        val node = Node.OperandNode(a)
-        val operator = Node.OperatorNode(Operation.MINUS)
-
-        val actual = operator.calculate(node, Node.OperandNode(b))
-
-        assertThat(actual).isEqualTo(Node.OperandNode(expected))
-    }
-
-    @ParameterizedTest
-    @CsvSource("1,1,1", "2,3,6", "3,4,12")
-    fun `곱셈을 한다`(
-        a: Int,
-        b: Int,
-        expected: Int,
-    ) {
-        val node = Node.OperandNode(a)
-        val operator = Node.OperatorNode(Operation.MULTIPLY)
-
-        val actual = operator.calculate(node, Node.OperandNode(b))
-
-        assertThat(actual).isEqualTo(Node.OperandNode(expected))
-    }
-
-    @ParameterizedTest
-    @CsvSource("1,1,1", "8,4,2", "4,4,1")
-    fun `나눗셈을 한다`(
-        a: Int,
-        b: Int,
-        expected: Int,
-    ) {
-        val node = Node.OperandNode(a)
-        val operator = Node.OperatorNode(Operation.DIVIDE)
-
-        val actual = operator.calculate(node, Node.OperandNode(b))
-
-        assertThat(actual).isEqualTo(Node.OperandNode(expected))
-    }
-
-    @ParameterizedTest
-    @CsvSource("1,2,+,3", "2,3,+,5", "3,4,+,7")
-    fun `OperatorNode 계산 가능하다`(
-        a: Int,
-        b: Int,
-        operation: String,
-        expected: Int,
-    ) {
-        val operator = Node.OperatorNode(Operation.ofSymbol(operation))
-
-        val actual = operator.calculate(Node.OperandNode(a), Node.OperandNode(b))
+        val actual = operatorNode.calculate(node, Node.OperandNode(b))
 
         assertThat(actual).isEqualTo(Node.OperandNode(expected))
     }

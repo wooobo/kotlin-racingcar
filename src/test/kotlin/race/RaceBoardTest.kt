@@ -16,7 +16,7 @@ class RaceBoardTest {
         carCount: Int,
         retryCount: Int,
     ) {
-        val raceBoard = RaceBoard.create(carCount, retryCount)
+        val raceBoard = RaceBoard(carCount, retryCount) { PositiveNumber(1) }
 
         val actual = raceBoard.start()
 

@@ -1,14 +1,12 @@
 package race
 
-data class RandomGenerate(
-    private val start: Int,
-    private val end: Int,
-) {
-    init {
-        require(start <= end) { "시작값은 종료값보다 클 수 없습니다" }
-    }
+typealias NumberGenerator = () -> PositiveNumber
 
-    fun generate(): PositiveNumber {
-        return PositiveNumber((start..end).random())
+data class RandomGenerate(
+    val generate: NumberGenerator = { PositiveNumber((RANDOM_START..RANDOM_END).random()) },
+) {
+    companion object {
+        private const val RANDOM_START = 0
+        private const val RANDOM_END = 9
     }
 }

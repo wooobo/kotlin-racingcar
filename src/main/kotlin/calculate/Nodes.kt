@@ -29,7 +29,7 @@ class Nodes(values: List<String>) {
             .fold(firstNode()) { acc, (leftOperand, rightOperand) ->
                 when (leftOperand) {
                     is Node.OperatorNode -> leftOperand.calculate(acc as Node.OperandNode, rightOperand as Node.OperandNode)
-                    else -> throw IllegalStateException("Invalid node")
+                    else -> error("Invalid node")
                 }
             }
     }
