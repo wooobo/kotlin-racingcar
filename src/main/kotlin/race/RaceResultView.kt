@@ -1,9 +1,13 @@
 package race
 
 class RaceResultView {
+    companion object {
+        private const val PROGRESS_UNIT = "-"
+    }
+
     fun printResult(result: PositiveNumber) {
         repeat(result.value) {
-            print("-")
+            print(PROGRESS_UNIT)
         }
         nextLine()
     }
