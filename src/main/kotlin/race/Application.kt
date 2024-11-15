@@ -5,7 +5,7 @@ fun main() {
     val retryCountView = InputView("시도할 횟수는 몇 회인가요?")
     val resultView = RaceResultView()
 
-    val raceRoundResult = RaceBoard(carCountView.processInputToInto(), retryCountView.processInputToInto())
+    val raceBoard = RaceBoard(carCountView.processInputToInto(), retryCountView.processInputToInto())
 
-    resultView.printResult(raceRoundResult)
+    resultView.printResult(raceBoard.start())
 }

@@ -5,11 +5,10 @@ class RaceResultView {
         private const val PROGRESS_UNIT = "-"
     }
 
-    fun printResult(raceBoard: RaceBoard) {
-        val raceResult = raceBoard.start()
+    fun printResult(result: RaceResult) {
         println("실행 결과")
 
-        raceResult.rounds.forEach {
+        result.rounds.forEach {
             progressPrint(it)
             println()
         }

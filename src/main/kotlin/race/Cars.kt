@@ -1,6 +1,10 @@
 package race
 
 class Cars(private val cars: List<Car>) : List<Car> by cars {
+    init {
+        require(cars.isNotEmpty()) { "최소 1대 이상 입력 해주세요." }
+    }
+
     companion object {
         private val MOVE_CONDITION = PositiveNumber(4)
 
