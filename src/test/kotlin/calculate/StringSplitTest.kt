@@ -1,9 +1,9 @@
 package calculate
 
+import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatIOException
 import org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType
 import org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy
-import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
@@ -19,7 +19,7 @@ class StringSplitTest {
 
         val result = input.split(" ")
 
-        assertEquals(listOf("1", "+", "1"), result)
+        assertThat(listOf("1", "+", "1")).isEqualTo(result)
     }
 
     @Test
@@ -31,14 +31,14 @@ class StringSplitTest {
         val actual3 = actual2[1].split("/")
 
         assertAll(
-            { assertEquals(listOf("1", "1-1/13"), actual1) },
-            { assertEquals(listOf("1", "1/13"), actual2) },
-            { assertEquals(listOf("1", "13"), actual3) },
+            { assertThat(listOf("1", "1-1/13")).isEqualTo(actual1) },
+            { assertThat(listOf("1", "1/13")).isEqualTo(actual2) },
+            { assertThat(listOf("1", "13")).isEqualTo(actual3) },
         )
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["", "  "])
+    @ValueSource(strings = [" ", "\t", "\n"])
     fun isBlank_ShouldReturnTrueForNullOrBlankStrings(input: String) {
         assertTrue(input.isBlank())
     }
@@ -51,7 +51,7 @@ class StringSplitTest {
     ) {
         val actual = input.split(operator)
 
-        assertEquals(listOf("1", "1"), actual)
+        assertThat(listOf("1", "1")).isEqualTo(actual)
     }
 
     @Test

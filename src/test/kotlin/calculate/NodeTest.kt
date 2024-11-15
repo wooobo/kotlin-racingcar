@@ -1,51 +1,82 @@
 package calculate
 
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
 
 class NodeTest {
-    @Test
-    fun `연산자를 찾는다`() {
-        val node = Node("+")
+    @ParameterizedTest
+    @CsvSource("1,1,2", "2,3,5", "3,4,7")
+    fun `덧셈을 한다`(
+        a: Int,
+        b: Int,
+        expected: Int,
+    ) {
+        val node = Node.OperandNode(a)
+        val operator = Node.OperatorNode(Operation.PLUS)
 
-        val actual = node.findOperation()
+        val actual = operator.calculate(node, Node.OperandNode(b))
 
-        assertThat(actual).isEqualTo(Operation.PLUS)
+        assertThat(actual).isEqualTo(Node.OperandNode(expected))
     }
 
-    @Test
-    fun `덧셈을 한다`() {
-        val node = Node("2")
+    @ParameterizedTest
+    @CsvSource("1,1,0", "2,3,-1", "3,4,-1")
+    fun `뺄셈을 한다`(
+        a: Int,
+        b: Int,
+        expected: Int,
+    ) {
+        val node = Node.OperandNode(a)
+        val operator = Node.OperatorNode(Operation.MINUS)
 
-        val actual = node.calculate(Operation.PLUS, Node("3"))
+        val actual = operator.calculate(node, Node.OperandNode(b))
 
-        assertThat(actual).isEqualTo(Node("5"))
+        assertThat(actual).isEqualTo(Node.OperandNode(expected))
     }
 
-    @Test
-    fun `뺄셈을 한다`() {
-        val node = Node("5")
+    @ParameterizedTest
+    @CsvSource("1,1,1", "2,3,6", "3,4,12")
+    fun `곱셈을 한다`(
+        a: Int,
+        b: Int,
+        expected: Int,
+    ) {
+        val node = Node.OperandNode(a)
+        val operator = Node.OperatorNode(Operation.MULTIPLY)
 
-        val actual = node.calculate(Operation.MINUS, Node("3"))
+        val actual = operator.calculate(node, Node.OperandNode(b))
 
-        assertThat(actual).isEqualTo(Node("2"))
+        assertThat(actual).isEqualTo(Node.OperandNode(expected))
     }
 
-    @Test
-    fun `곱셈을 한다`() {
-        val node = Node("2")
+    @ParameterizedTest
+    @CsvSource("1,1,1", "8,4,2", "4,4,1")
+    fun `나눗셈을 한다`(
+        a: Int,
+        b: Int,
+        expected: Int,
+    ) {
+        val node = Node.OperandNode(a)
+        val operator = Node.OperatorNode(Operation.DIVIDE)
 
-        val actual = node.calculate(Operation.MULTIPLY, Node("3"))
+        val actual = operator.calculate(node, Node.OperandNode(b))
 
-        assertThat(actual).isEqualTo(Node("6"))
+        assertThat(actual).isEqualTo(Node.OperandNode(expected))
     }
 
-    @Test
-    fun `나눗셈을 한다`() {
-        val node = Node("6")
+    @ParameterizedTest
+    @CsvSource("1,2,+,3", "2,3,+,5", "3,4,+,7")
+    fun `OperatorNode 계산 가능하다`(
+        a: Int,
+        b: Int,
+        operation: String,
+        expected: Int,
+    ) {
+        val operator = Node.OperatorNode(Operation.ofSymbol(operation))
 
-        val actual = node.calculate(Operation.DIVIDE, Node("3"))
+        val actual = operator.calculate(Node.OperandNode(a), Node.OperandNode(b))
 
-        assertThat(actual).isEqualTo(Node("2"))
+        assertThat(actual).isEqualTo(Node.OperandNode(expected))
     }
 }
