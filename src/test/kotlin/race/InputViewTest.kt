@@ -8,10 +8,11 @@ class InputViewTest {
     fun `생성자에 람다식 주입 가능`() {
         val testProcessor =
             InputView(
+                "",
                 readInput = { "5" },
             )
 
-        val result = testProcessor.processInput("")
+        val result = testProcessor.processInput()
 
         assertThat(result).isEqualTo("5")
     }
