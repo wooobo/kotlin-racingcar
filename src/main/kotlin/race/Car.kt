@@ -1,6 +1,6 @@
 package race
 
-class Car(private var position: PositiveNumber) {
+class Car(var position: PositiveNumber) {
     fun move() {
         position += PositiveNumber(1)
     }
