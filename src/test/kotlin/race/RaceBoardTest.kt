@@ -12,22 +12,11 @@ class RaceBoardTest {
         delimiter = ',',
     )
     fun `start 실행시 문제없이 작동하여야 한다`(
-        carCount: String,
-        retryCount: String,
+        carCount: Int,
+        retryCount: Int,
     ) {
-        val carCountView =
-            InputView(
-                "",
-                readInput = { carCount },
-            )
-        val retryCountView =
-            InputView(
-                "",
-                readInput = { retryCount },
-            )
-
         val resultView = RaceResultView()
-        val raceBoard = RaceBoard(carCountView, retryCountView, resultView)
+        val raceBoard = RaceBoard(carCount, retryCount, resultView)
 
         raceBoard.start()
     }

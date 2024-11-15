@@ -1,14 +1,17 @@
 package race
 
 class RaceBoard(
-    private val carCountView: InputView,
-    private val retryCountView: InputView,
+    private val carCount: Int,
+    private val retryCount: Int,
     private val resultView: RaceResultView,
 ) {
+    companion object {
+        private const val RANDOM_START = 0
+        private const val RANDOM_END = 9
+    }
+
     fun start() {
-        val randomGenerate = RandomGenerate(0, 10)
-        val carCount = carCountView.processInputToInto()
-        val retryCount = retryCountView.processInputToInto()
+        val randomGenerate = RandomGenerate(RANDOM_START, RANDOM_END)
         val cars = Cars.from(PositiveNumber(carCount))
 
         repeat(retryCount) {
