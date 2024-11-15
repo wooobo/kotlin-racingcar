@@ -1,6 +1,9 @@
 package race
 
-class Car(var position: PositiveNumber) {
+class Car(private var position: PositiveNumber) {
+    val movedPosition: PositiveNumber
+        get() = position
+
     companion object {
         private const val MOVE_POSITION = 1
     }
