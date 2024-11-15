@@ -15,8 +15,7 @@ class RaceBoardTest {
         carCount: Int,
         retryCount: Int,
     ) {
-        val resultView = RaceResultView()
-        val raceBoard = RaceBoard(carCount, retryCount, resultView)
+        val raceBoard = RaceBoard(carCount, retryCount)
 
         raceBoard.start()
     }

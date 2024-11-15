@@ -114,4 +114,19 @@ class ListExtensionTest {
             { assertThat(actual[2]).containsExactly(5) },
         )
     }
+
+    @Test
+    fun `map 함수는 마지막 줄을 암묵적 반환한다`() {
+        val actual =
+            listOf(1, 2, 3, 4, 5)
+                .map {
+                    val r = it + 1
+                    r * 2
+                }
+
+        assertAll(
+            { assertThat(actual).containsExactly(4, 6, 8, 10, 12) },
+            { assertThat(actual::class).isEqualTo(java.util.ArrayList::class) },
+        )
+    }
 }
