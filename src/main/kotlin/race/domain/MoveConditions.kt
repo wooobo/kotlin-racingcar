@@ -1,4 +1,6 @@
-package race
+package race.domain
+
+import race.sevice.NumberGenerator
 
 class MoveConditions(val values: List<MoveCondition>) {
     val size: Int
