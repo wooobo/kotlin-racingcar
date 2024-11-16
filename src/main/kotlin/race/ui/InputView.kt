@@ -1,9 +1,9 @@
-package race
+package race.ui
 
 class InputView(
     private val message: String,
 ) {
-    private fun processInput(): String {
+    fun processInput(): String {
         println(message)
         return readlnOrNull() ?: throw IllegalArgumentException("입력이 없습니다.")
     }
