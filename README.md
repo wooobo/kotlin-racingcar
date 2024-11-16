@@ -78,3 +78,14 @@ UI 로직을 InputView, ResultView와 같은 클래스를 추가해 분리한다
 - [X] n대의 자동차 생성
 - [X] ui 
 
+## 3단계 피드백
+- [ ]  setter는 감추고, getter만 공개
+- `private settter` 를 알아보자
+- [ ] error() 함수 활용 (Nodes.kt)
+- [ ] data class와 class의 차이점을 비교 (Car.kt)
+- [ ] Cars 정적 팩토리 메소드 => 부생성자
+- [ ] Alist.zip(Blist) 알아보기 (Cars.kt)
+- [ ] RandomGenerate 인터페이스화
+- [ ] 변수 타입이 명확하지 않은 경우 확실하게 지정하라 (RaceBoard.kt)
+- [ ] CsvSource enum 적용 (NodeTest.kt)
+- [ ] List와 List를 직접 비교 (CarsTest.kt)
