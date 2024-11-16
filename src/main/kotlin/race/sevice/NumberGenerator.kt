@@ -1,8 +1,10 @@
-package race
+package race.sevice
+
+import race.domain.PositiveNumber
 
 typealias NumberGenerator = () -> PositiveNumber
 
-data class RandomGenerate(
+data class RandomGenerator(
     val generate: NumberGenerator = { PositiveNumber((RANDOM_START..RANDOM_END).random()) },
 ) {
     companion object {
