@@ -1,11 +1,12 @@
-package race
+package race.domain
 
 class Cars(private val cars: List<Car>) : List<Car> by cars {
-    constructor(carCount: PositiveNumber) : this(List(carCount.value) { Car(PositiveNumber(1)) })
-
     init {
         require(cars.isNotEmpty()) { "최소 1대 이상 입력 해주세요." }
     }
+
+    constructor(carCount: PositiveNumber) : this(List(carCount.value) { Car("a", 1) })
+    constructor(carNames: CarNames) : this(carNames.map { Car(it.name, 1) })
 
     fun moveAll(moveConditions: MoveConditions) {
         validMoveCondition(moveConditions)
@@ -14,6 +15,11 @@ class Cars(private val cars: List<Car>) : List<Car> by cars {
             .forEach { (moveCar, moveCondition) ->
                 move(moveCar, moveCondition)
             }
+    }
+
+    fun deepCopy(): Cars {
+        val copiedCars = cars.map { car -> car.copy() }
+        return Cars(copiedCars)
     }
 
     private fun move(

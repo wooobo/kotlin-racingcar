@@ -3,11 +3,16 @@ package race
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.api.Test
+import race.domain.Car
+import race.domain.Cars
+import race.domain.MoveCondition
+import race.domain.MoveConditions
+import race.domain.PositiveNumber
 
 class CarsTest {
     @Test
     fun `moveAll은 주어진 이동 조건에 따라 움직인다`() {
-        val cars = Cars(PositiveNumber(4))
+        val cars = Cars(listOf(Car("a", 2), Car("b", 1), Car("c", 2), Car("d", 1)))
         val moveConditions =
             MoveConditions(
                 listOf(
@@ -20,7 +25,7 @@ class CarsTest {
 
         cars.moveAll(moveConditions)
 
-        val expected = listOf(Car(2), Car(1), Car(2), Car(1))
+        val expected = listOf(Car("a", 3), Car("b", 1), Car("c", 3), Car("d", 1))
         cars.forEachIndexed { index, car ->
             assertThat(car).isEqualTo(expected[index])
         }

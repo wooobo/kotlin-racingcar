@@ -4,6 +4,9 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
+import race.domain.Car
+import race.domain.CarName
+import race.domain.PositiveNumber
 
 class CarTest {
     @ParameterizedTest
@@ -12,16 +15,16 @@ class CarTest {
         position: Int,
         expected: Int,
     ) {
-        val car = Car(PositiveNumber(position))
+        val car = Car(CarName("a"), PositiveNumber(position))
 
         car.move()
 
-        assertThat(car).isEqualTo(Car(PositiveNumber(expected)))
+        assertThat(car).isEqualTo(Car(CarName("a"), PositiveNumber(expected)))
     }
 
     @Test
     fun `movedPosition 으로 위치 확인 가능`() {
-        val car = Car(PositiveNumber(1))
+        val car = Car(CarName("a"), PositiveNumber(1))
 
         assertThat(car.position).isEqualTo(PositiveNumber(1))
     }
